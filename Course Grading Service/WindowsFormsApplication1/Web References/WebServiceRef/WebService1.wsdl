@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertStudents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="list" type="tns:ArrayOfStudent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Student" nillable="true" type="tns:Student" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Student">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lname" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertStudentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertStudentsResult" type="tns:ArrayOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertAssessment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="a" type="tns:Assessment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Assessment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="marks" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertAssessmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertAssessmentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindTotalMarks">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindTotalMarksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FindTotalMarksResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssessmentNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssessmentNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAssessmentNumberResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="table" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="col" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleColValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="get" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleColValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSingleColValueResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertOrUpdateMarks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="std_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="a_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="marks" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="update" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertOrUpdateMarksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertOrUpdateMarksResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintGradeSheet">
+        <s:complexType />
+      </s:element>
+      <s:element name="PrintGradeSheetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PrintGradeSheetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AllAssessmentGraded">
+        <s:complexType />
+      </s:element>
+      <s:element name="AllAssessmentGradedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AllAssessmentGradedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertStudentsSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertStudents" />
+  </wsdl:message>
+  <wsdl:message name="InsertStudentsSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertStudentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssessmentSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertAssessment" />
+  </wsdl:message>
+  <wsdl:message name="InsertAssessmentSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAssessmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindTotalMarksSoapIn">
+    <wsdl:part name="parameters" element="tns:FindTotalMarks" />
+  </wsdl:message>
+  <wsdl:message name="FindTotalMarksSoapOut">
+    <wsdl:part name="parameters" element="tns:FindTotalMarksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAssessmentNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAssessmentNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetAssessmentNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAssessmentNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTable" />
+  </wsdl:message>
+  <wsdl:message name="GetTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleColValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSingleColValue" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleColValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSingleColValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertOrUpdateMarksSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateMarks" />
+  </wsdl:message>
+  <wsdl:message name="InsertOrUpdateMarksSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateMarksResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrintGradeSheetSoapIn">
+    <wsdl:part name="parameters" element="tns:PrintGradeSheet" />
+  </wsdl:message>
+  <wsdl:message name="PrintGradeSheetSoapOut">
+    <wsdl:part name="parameters" element="tns:PrintGradeSheetResponse" />
+  </wsdl:message>
+  <wsdl:message name="AllAssessmentGradedSoapIn">
+    <wsdl:part name="parameters" element="tns:AllAssessmentGraded" />
+  </wsdl:message>
+  <wsdl:message name="AllAssessmentGradedSoapOut">
+    <wsdl:part name="parameters" element="tns:AllAssessmentGradedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebService1Soap">
+    <wsdl:operation name="InsertStudents">
+      <wsdl:input message="tns:InsertStudentsSoapIn" />
+      <wsdl:output message="tns:InsertStudentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssessment">
+      <wsdl:input message="tns:InsertAssessmentSoapIn" />
+      <wsdl:output message="tns:InsertAssessmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindTotalMarks">
+      <wsdl:input message="tns:FindTotalMarksSoapIn" />
+      <wsdl:output message="tns:FindTotalMarksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssessmentNumber">
+      <wsdl:input message="tns:GetAssessmentNumberSoapIn" />
+      <wsdl:output message="tns:GetAssessmentNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTable">
+      <wsdl:input message="tns:GetTableSoapIn" />
+      <wsdl:output message="tns:GetTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleColValue">
+      <wsdl:input message="tns:GetSingleColValueSoapIn" />
+      <wsdl:output message="tns:GetSingleColValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateMarks">
+      <wsdl:input message="tns:InsertOrUpdateMarksSoapIn" />
+      <wsdl:output message="tns:InsertOrUpdateMarksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintGradeSheet">
+      <wsdl:input message="tns:PrintGradeSheetSoapIn" />
+      <wsdl:output message="tns:PrintGradeSheetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllAssessmentGraded">
+      <wsdl:input message="tns:AllAssessmentGradedSoapIn" />
+      <wsdl:output message="tns:AllAssessmentGradedSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertStudents">
+      <soap:operation soapAction="http://tempuri.org/InsertStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssessment">
+      <soap:operation soapAction="http://tempuri.org/InsertAssessment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindTotalMarks">
+      <soap:operation soapAction="http://tempuri.org/FindTotalMarks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssessmentNumber">
+      <soap:operation soapAction="http://tempuri.org/GetAssessmentNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTable">
+      <soap:operation soapAction="http://tempuri.org/GetTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleColValue">
+      <soap:operation soapAction="http://tempuri.org/GetSingleColValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateMarks">
+      <soap:operation soapAction="http://tempuri.org/InsertOrUpdateMarks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintGradeSheet">
+      <soap:operation soapAction="http://tempuri.org/PrintGradeSheet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllAssessmentGraded">
+      <soap:operation soapAction="http://tempuri.org/AllAssessmentGraded" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertStudents">
+      <soap12:operation soapAction="http://tempuri.org/InsertStudents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAssessment">
+      <soap12:operation soapAction="http://tempuri.org/InsertAssessment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindTotalMarks">
+      <soap12:operation soapAction="http://tempuri.org/FindTotalMarks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssessmentNumber">
+      <soap12:operation soapAction="http://tempuri.org/GetAssessmentNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTable">
+      <soap12:operation soapAction="http://tempuri.org/GetTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleColValue">
+      <soap12:operation soapAction="http://tempuri.org/GetSingleColValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateMarks">
+      <soap12:operation soapAction="http://tempuri.org/InsertOrUpdateMarks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintGradeSheet">
+      <soap12:operation soapAction="http://tempuri.org/PrintGradeSheet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllAssessmentGraded">
+      <soap12:operation soapAction="http://tempuri.org/AllAssessmentGraded" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService1">
+    <wsdl:port name="WebService1Soap" binding="tns:WebService1Soap">
+      <soap:address location="http://localhost:61245/WebService1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1Soap12" binding="tns:WebService1Soap12">
+      <soap12:address location="http://localhost:61245/WebService1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
